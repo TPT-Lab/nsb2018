@@ -10,6 +10,6 @@ Contributors:
 
   * Matt van der Meer ([mvdm](http://www.vandermeerlab.org))
   * Reasonable Reshma and Radical Rebecca
-  * Loveable Logan and Machiavellian Matt
+  * Loveable Logan and Machiavellian Matt (both of our accounts)
 
 
