@@ -16,7 +16,7 @@ if ~self.get_redrawStatus()
         end
     end
     
-else % DRAW IT
+else % DRAW IT   
         
     % window for display
     if isempty(self.CC_displayWindow) || ~ishandle(self.CC_displayWindow)

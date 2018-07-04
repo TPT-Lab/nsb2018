@@ -11,7 +11,10 @@ classdef KKwikCutter < MClust.Cutter
         whoHasComparison = [];
         
         nextClusterButton = [];
-        prevClusterButton = []
+        prevClusterButton = [];  
+        
+        findBestAxesButton = [];
+        toggleKeepTossFocusButton = [];
     end
     
     methods
@@ -111,11 +114,14 @@ classdef KKwikCutter < MClust.Cutter
                 end
             end
         end
-        
+                       
         function RedisplayAvgWV(self)
             MCS = MClust.GetSettings();
             figure(self.figHandle_AvgWV);
-            errorbar(self.whoHasFocus.xrange, self.whoHasFocus.mWV, self.whoHasFocus.sWV, 'b');
+            errorbar(self.whoHasFocus.xrange, self.whoHasFocus.mWV, self.whoHasFocus.sWV, 'c');
+            hold on; 
+            plot(self.whoHasFocus.xrange, self.whoHasFocus.mWV, 'k');
+            hold off
             set(gca, 'YLim',MCS.AverageWaveform_ylim);
             if ~isequal(self.whoHasComparison, self.whoHasFocus)
                 hold on
@@ -139,8 +145,7 @@ classdef KKwikCutter < MClust.Cutter
                     MClust.HistISI(T, 'axesHandle', gca, 'myColor', 'r');
                 end
                 hold off
-            end
-            
+            end            
         end
         
         % ---------------------------------
@@ -159,7 +164,12 @@ classdef KKwikCutter < MClust.Cutter
             if iFocus < 1, beep; iFocus = 1; end
             self.Clusters{iFocus}.TakeFocus;
         end
-        
+    
+        function ToggleKeepTossFocus(self)
+            keep = get(self.whoHasFocus.keepButton, 'Value');
+            set(self.whoHasFocus.keepButton, 'Value', ~keep);
+            self.whoHasFocus.ChangeKeep();
+        end
         
         % ---------------------------------
         % Load/Save
@@ -168,7 +178,7 @@ classdef KKwikCutter < MClust.Cutter
             MCD = MClust.GetData();
             
             if isempty(FindFiles('*.KKmat.*', 'StartingDirectory', MCD.TTdn))
-                fn = fullfile(MCD.TTdn, [MCD.TTfn '.clu.*']);
+                fn = fullfile(MCD.TTdn, [MCD.TTfn '.clu*']);
             else
                 fn = fullfile(MCD.TTdn, [MCD.TTfn '.KKmat.*']);
             end
@@ -177,8 +187,10 @@ classdef KKwikCutter < MClust.Cutter
                 OK = false;
                 return;
             else
-                [~,fntype,~] = fileparts(fn);
-                [~,~,fntype] = fileparts(fntype);
+                [~,fnn,fntype] = fileparts(fn);
+                if ~isempty(str2num(fntype))
+                    [~,~,fntype] = fileparts(fnn);
+                end
                 switch (fntype)
                     case '.KKmat'
                         load(fullfile(fd,fn), 'fnClu', 'spikesToInclude', '-mat');
