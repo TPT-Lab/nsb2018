@@ -1,4 +1,4 @@
-function [output, m] = L_Ratio(FD, ClusterSpikes)
+function [output, m] = L_Ratio(FD, ClusterSpikes, NoiseSpikes)
 
 % output = L_Ratio(FD, ClusterSpikes)
 %
@@ -10,6 +10,7 @@ function [output, m] = L_Ratio(FD, ClusterSpikes)
 %
 % Output: a structure containing three components
 %           Lratio, L, df
+% ADR 2017-10-02 Added code to allow processing of NoiseSpikes
 
 % find # of spikes in this cluster
 [nSpikes, nD] = size(FD);
@@ -17,7 +18,9 @@ function [output, m] = L_Ratio(FD, ClusterSpikes)
 nClusterSpikes = length(ClusterSpikes);
 
 % mark spikes which are not cluster members
-NoiseSpikes = setdiff(1:nSpikes, ClusterSpikes);
+if nargin < 3
+    NoiseSpikes = setdiff(1:nSpikes, ClusterSpikes);
+end
 
 m = mahal(FD, FD(ClusterSpikes,:));
 df = size(FD,2);

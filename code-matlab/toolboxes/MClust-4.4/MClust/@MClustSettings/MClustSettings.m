@@ -14,7 +14,7 @@ classdef (Sealed) MClustSettings < handle
         DEBUG = true;
         Directory = fileparts(which('MClust.m'));
         
-        tEXT = 't'; 
+        tEXT = 't64'; 
           % 't64' writes 64-bit data, after converting to 0.1 ms resolution
           % 't32' writes 32-bit data, after converting to 0.1 ms resolution
           % 't' writes 32-bit data, after converting to 0.1 ms resolution
@@ -25,8 +25,9 @@ classdef (Sealed) MClustSettings < handle
         windowLocations = containers.Map;
         
         % -- display
-        AverageWaveform_ylim = 16*[-2100 2100];  % For Cheetah 5        
-        %AverageWaveform_ylim = [-2100 2100]; % For earlier versions of Cheetah
+        %AverageWaveform_ylim = 16*[-2100 2100];  % For Cheetah 5        
+        AverageWaveform_ylim = [-2100 2100]; % For earlier versions of Cheetah
+        %AverageWaveform_ylim = [1000 1000]; % For Intan
         
         colors = [];
         ClusterCutWindow_Marker = 1;

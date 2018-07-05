@@ -49,6 +49,10 @@ if any(needToCalculate)
 	FeatureIndex = 1:nSpikes; %#ok<NASGU>
 	TT_file_name = MCD.TTfn; %#ok<NASGU>
 	ChannelValidity = MCS.ChannelValidity;
+    if length(ChannelValidity) ~= size(WV.data,2) % ADR 2017-10-02 hack
+        ChannelValidity = true(1,size(WV.data,2));
+        warning('MClust:CalculateFeatures', 'ChannelValidity mismatch - reset to true(1,%d).', size(WV.data,2));
+    end
 	
 	for iF = 1:nFeat
 		if needToCalculate(iF)

@@ -23,7 +23,7 @@ function  CutterOption_CompareAverageWaveforms(self)
 % PARAMETERS
 %%%%%%%%%%%%%%%%%%
 
-OnePlot = false;
+OnePlot = true;
 
 %%%%%%%%%%%%%%%%%%%%%%
 

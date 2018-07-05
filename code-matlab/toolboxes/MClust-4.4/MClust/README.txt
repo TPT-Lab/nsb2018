@@ -1,4 +1,14 @@
-LATEST VERSION: MClust 4.4.05
+LATEST VERSION: MClust 4.4.07
+
+MClust-4.4.07
+Minor change to loading clu files
+
+MClust-4.4.06
+Added AverageWaveform_ylim to LoadingEngine get conditions
+Added get conditions to LoadIntanSpikes
+Reset ChannelValidity if the length of the probes is too long
+Changed displays in KKwik
+FindBestDimension in KKwik
 
 MClust-4.4.05
 Added wavelet features based on Daubechies 4-coeff wavelet transform (B Hasz)
