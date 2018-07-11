@@ -143,8 +143,8 @@ classdef Cutter < handle
 		end
 		function set_redrawStatus(self,B)
 			set(self.redrawAxesButton, 'Value', B);
-		end
-		
+        end
+
 		function C = getClusters(self)
 			C = self.Clusters;
 		end

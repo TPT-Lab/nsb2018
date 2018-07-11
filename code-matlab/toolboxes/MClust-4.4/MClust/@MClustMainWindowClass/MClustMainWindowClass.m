@@ -153,12 +153,14 @@ classdef MClustMainWindowClass < handle
                 % extenions
                 CV = feval(MCS.NeuralLoadingFunction, 'get', 'ChannelValidity');
                 self.SetChannelValidity(CV);
+                fprintf('Channel Validity reset by loading engine.\n');
             catch ME
             end
             
             try
                 xt = feval(MCS.NeuralLoadingFunction, 'get', 'ExpectedExtension');
                 MCD.TText = xt;
+                fprintf('Expected extension set by loading engine to ''%s''.\n',xt);
             catch ME
             end
             
@@ -166,6 +168,14 @@ classdef MClustMainWindowClass < handle
                 MCS.UseFileDialog = true; % default to True
                 fd = feval(MCS.NeuralLoadingFunction, 'get', 'UseFileDialog');
                 MCS.UseFileDialog = fd;
+                if fd, disp('Using file dialog.'); else disp('Skipping file dialog.'); end
+            catch ME
+            end
+            
+            try
+                aw = feval(MCS.NeuralLoadingFunction, 'get', 'AverageWaveform_ylim');
+                MCS.AverageWaveform_ylim = aw;
+                fprintf('AverageWaveform ylim set by loading engine to [%.0f %.0f].\n', aw(1), aw(2));
             catch ME
             end
             %---------------------------------------------------------
