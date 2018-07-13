@@ -74,6 +74,15 @@ for iEvent = 1:length(cfg.eventList)
     
 end
 
+% ensure column vectors
+for iEvent = 1:length(cfg.eventList)
+   
+    if ~iscolumn(events_ts.t{iEvent})
+        events_ts.t{iEvent} = events_ts.t{iEvent}';
+    end
+    
+end
+
 % check if ExpKeys available
 keys_f = FindFiles('*keys.m');
 if ~isempty(keys_f)
