@@ -13,4 +13,7 @@ Contributors:
   * Loveable Logan and Machiavellian Matt (both of our accounts)
   * Delirious David and Ruthless Rabia
 
+Name: Ethan Trepka
+Affiliation: Dartmouth Undergrad
+Interests: Neuro Research
 
