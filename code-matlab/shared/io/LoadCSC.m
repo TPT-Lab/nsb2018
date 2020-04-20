@@ -209,7 +209,7 @@ for hline = 1:length(Header)
     
     % deal with characters not allowed by MATLAB struct
     
-    if strcmp(a.key,'DspFilterDelay_µs')
+    if strncmpi(a.key,'DspFilterDelay',14)
         a.key = 'DspFilterDelay_us';
     end
     
